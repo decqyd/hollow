@@ -1,11 +1,14 @@
 #![allow(unused_imports, dead_code)]
-mod lexer;
-mod types;
 
-use types::{Float, Integer, Op};
+mod tokens;
+mod types;
+use crate::tokens::token::Token;
+use std::collections::HashMap;
+use types::{Float, Integer};
 
 #[cfg(test)]
 mod tests {
+
     use super::*;
     #[test]
     fn parse_number() {
@@ -20,12 +23,12 @@ mod tests {
     }
 
     #[test]
-    fn parse_add() {
-        assert_eq!(Op::new("+"), Op::Add)
+    fn parse_plus_token() {
+        assert_eq!(Token::Add, Token::new("+"))
     }
 
     #[test]
-    fn parse_sub() {
-        assert_eq!(Op::new("-"), Op::Sub)
+    fn parse_openp_token() {
+        assert_eq!(Token::OpenP, Token::new("("))
     }
 }

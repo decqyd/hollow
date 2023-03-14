@@ -15,23 +15,3 @@ impl Float {
         Self(s.parse().unwrap())
     }
 }
-
-#[derive(Debug, PartialEq)]
-pub enum Op {
-    Add,
-    Sub,
-    Div,
-    Mul,
-}
-
-impl Op {
-    pub fn new(s: &str) -> Self {
-        match s {
-            "+" => Self::Add,
-            "-" => Self::Sub,
-            "*" => Self::Mul,
-            "/" => Self::Div,
-            _ => panic!("bad operator i think"),
-        }
-    }
-}
