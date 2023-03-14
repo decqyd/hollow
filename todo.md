@@ -6,4 +6,4 @@
 ## lexer
 * implement beginning of lexer
 * work out how ast is going to work
-** split line into words, analyze each word, ez
+* split line into words, analyze each word, ez
