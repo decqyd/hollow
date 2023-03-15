@@ -15,3 +15,11 @@ impl Float {
         Self(s.parse().unwrap())
     }
 }
+
+#[derive(Debug, PartialEq)]
+pub struct Str(pub String);
+impl Str {
+    pub fn new(s: &str) -> Self {
+        Self(String::from(s))
+    }
+}
