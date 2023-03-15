@@ -24,11 +24,11 @@ mod tests {
 
     #[test]
     fn parse_plus_token() {
-        assert_eq!(Token::Add, Token::new("+"))
+        assert_eq!(Token::ADD, Token::new("+"))
     }
 
     #[test]
     fn parse_openp_token() {
-        assert_eq!(Token::OpenP, Token::new("("))
+        assert_eq!(Token::OPENP, Token::new("("))
     }
 }

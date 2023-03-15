@@ -23,3 +23,15 @@ impl Str {
         Self(String::from(s))
     }
 }
+
+#[derive(Debug, PartialEq)]
+pub struct Bool(pub bool);
+impl Bool {
+    pub fn new(s: &str) -> Self {
+        match s {
+            "true" | "True" | "TRUE" => Self(true),
+            "false" | "False" | "FALSE" => Self(false),
+            _ => panic!("not a boolean type"),
+        }
+    }
+}
