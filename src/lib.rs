@@ -1,7 +1,9 @@
 #![allow(unused_imports, dead_code)]
 
-mod tokens;
-mod types;
+pub mod lexer;
+pub mod parser;
+pub mod tokens;
+pub mod types;
 use crate::tokens::token::Token;
 use std::collections::HashMap;
 use types::{Float, Integer};

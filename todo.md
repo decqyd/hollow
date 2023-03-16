@@ -10,6 +10,8 @@
 * make a tokens list for every token (wip)
 
 ## lexer
-* implement beginning of lexer/parser
-* work out how ast is going to work
-* split line into chars, analyze each char, ez
+* working
+
+## parser
+* make parser parse and eval properly
+* work out a way to format lexed data.

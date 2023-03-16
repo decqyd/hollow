@@ -1,8 +1,8 @@
-use std::collections::HashMap;
-
-use crate::token::tokens::Token;
+#![allow(unused_imports, unused_variables, dead_code)]
 
 pub mod lexer {
+    use crate::tokens::token::Token;
+    use std::collections::HashMap;
     pub struct Lexer;
 
     impl Lexer {
@@ -10,9 +10,13 @@ pub mod lexer {
             Self
         }
 
-        pub fn lex(s: &str) {
-            let split = s.split();
-            
+        pub fn lex<'a>(self: &'a Self, s: &'a str) -> Vec<HashMap<Token, &str>> {
+            let split = s.split(" ");
+            let mut splits = vec![];
+            for i in split {
+                splits.push(HashMap::from([(Token::new(i), i)]));
+            }
+            splits
         }
     }
 }
