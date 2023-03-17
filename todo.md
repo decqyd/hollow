@@ -15,7 +15,7 @@
 a certain character then return and tokenise that.
 * consume until allows for individual char checking
 * add "value" field to each lex:
-[{FUNCTIONINDENT: "proc", VALUE: "functionnamd}]
+[{FUNCTIONINDENT: "proc", VALUE: "function name"}]
 
 ## parser
 * make parser parse and eval properly
