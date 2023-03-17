@@ -18,5 +18,21 @@ pub mod lexer {
             }
             splits
         }
+
+        pub fn consume_until(self: Self, s: &str, until: char, inclusive: bool) -> &str {
+            let mut i = 0;
+            for char in s.chars() {
+                if char != until {
+                    i += 1
+                } else {
+                    break;
+                }
+            }
+            if !inclusive {
+                &s[..i]
+            } else {
+                &s[..=i]
+            }
+        }
     }
 }
