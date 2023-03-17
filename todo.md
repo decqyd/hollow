@@ -19,4 +19,5 @@ a certain character then return and tokenise that.
 
 ## parser
 * make parser parse and eval properly
-* work out a way to format lexed data.
+* set expected formats for all tokens, if lexed
+code doesnt match example, produce token error
