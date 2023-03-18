@@ -1,5 +1,6 @@
 #![allow(unused_imports, dead_code)]
 
+pub mod error;
 pub mod lexer;
 pub mod parser;
 pub mod tokens;

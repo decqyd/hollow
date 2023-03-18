@@ -14,11 +14,12 @@ pub mod parser {
 
         pub fn parse(self: Self, s: &str) {
             let lexer = Lexer::new();
-
+            let mut linenum = 0;
             for i in s.lines() {
-                let res = lexer.lex(i);
+                let res = lexer.lex(i, linenum);
                 println!("{:?}", res);
                 self.eval(&res);
+                linenum += 1;
             }
         }
 
@@ -26,7 +27,7 @@ pub mod parser {
             for i in s {
                 for (i, k) in i.iter() {
                     if i == &Token::STRING {
-                        println!("{}", k);
+                        println!(r#"{}"#, k);
                     }
                 }
             }

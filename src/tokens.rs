@@ -1,4 +1,5 @@
 pub mod token {
+    use crate::error::error::{Error, ErrorType};
     #[derive(Debug, PartialEq, Eq, Hash)]
 
     pub enum Token {
@@ -41,6 +42,7 @@ pub mod token {
         FALSE,
         NEWLINE,
         STRING,
+        NONE,
     }
 
     impl Token {
@@ -84,10 +86,7 @@ pub mod token {
                 "true" => Self::TRUE,
                 "false" => Self::FALSE,
                 "\n" => Self::NEWLINE,
-                _ => {
-                    println!("unexpected token: {s}");
-                    Self::ADDEQUALS
-                }
+                _ => Self::NONE,
             }
         }
     }
