@@ -1,6 +1,6 @@
 pub mod token {
-
     #[derive(Debug, PartialEq, Eq, Hash)]
+
     pub enum Token {
         ADD,
         ADDEQUALS,
@@ -17,9 +17,10 @@ pub mod token {
         FORSEPERATOR,
         WHILELOOP,
         ASSIGNMENT,
+        VARNAME,
+        VARVALUE,
         SEMICOLON,
         DOT,
-        QUOTE,
         CURLYOP,
         CURLYCP,
         FUNCTIONIDENT,
@@ -38,6 +39,8 @@ pub mod token {
         AND,
         TRUE,
         FALSE,
+        NEWLINE,
+        STRING,
     }
 
     impl Token {
@@ -58,9 +61,11 @@ pub mod token {
                 "|" => Self::FORSEPERATOR,
                 "while" => Self::WHILELOOP,
                 "=" => Self::ASSIGNMENT,
+                "varname" => Self::VARNAME,
+                "varvalue" => Self::VARVALUE,
                 ";" => Self::SEMICOLON,
                 "." => Self::DOT,
-                "\"" => Self::QUOTE,
+                "\"" => Self::STRING,
                 "{" => Self::CURLYOP,
                 "}" => Self::CURLYCP,
                 "proc" => Self::FUNCTIONIDENT,
@@ -78,7 +83,11 @@ pub mod token {
                 "&&" => Self::AND,
                 "true" => Self::TRUE,
                 "false" => Self::FALSE,
-                _ => panic!("unexpected token"),
+                "\n" => Self::NEWLINE,
+                _ => {
+                    println!("unexpected token: {s}");
+                    Self::ADDEQUALS
+                }
             }
         }
     }

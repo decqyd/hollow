@@ -14,10 +14,9 @@
 * consume characters from parameter til
 a certain character then return and tokenise that.
 * consume until allows for individual char checking
-* add "value" field to each lex:
-[{FUNCTIONINDENT: "proc", VALUE: "function name"}]
+* add "value" and "args" field to each lex:
+[{FUNCTIONINDENT: "proc", VALUE: "function name", ARGS: "args"}]
 
 ## parser
 * make parser parse and eval properly
-* set expected formats for all tokens, if lexed
-code doesnt match example, produce token error
+* set expected formats for all tokens, if lexed code doesnt match example, produce token error

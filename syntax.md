@@ -8,7 +8,7 @@ let float = 3.4
 
 ## print
 "this is a print statement"
-`"this is a print statement with vars: {int} {str} {boo} {float}"
+f"this is a print statement with vars: {int} {str} {boo} {float}"
 
 ## functions
 proc helloworld => args {
@@ -29,7 +29,7 @@ if 1 > 2 {
 
 ## for loop
 for let i = 2 | i < 10 | i++ {
-    `"i is {i}!"
+    f"i is {i}!"
 }
 
 ## while loop

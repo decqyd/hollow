@@ -2,7 +2,9 @@
 
 pub mod parser {
     use crate::lexer::lexer::Lexer;
+    use crate::tokens::token::Token;
     use std::collections::HashMap;
+    use std::iter::Enumerate;
     pub struct Parser;
 
     impl Parser {
@@ -12,20 +14,22 @@ pub mod parser {
 
         pub fn parse(self: Self, s: &str) {
             let lexer = Lexer::new();
-            let mut lines = vec![];
-            let mut list = vec![];
+
             for i in s.lines() {
-                lines.push(i);
-            }
-            for i in &lines {
                 let res = lexer.lex(i);
-                list.push(res);
-                println!("{}", lines[0]);
-                println!("{:?}", list[0])
-                //
+                println!("{:?}", res);
+                self.eval(&res);
             }
         }
 
-        fn eval() {}
+        fn eval(self: &Self, s: &Vec<HashMap<Token, &str>>) {
+            for i in s {
+                for (i, k) in i.iter() {
+                    if i == &Token::STRING {
+                        println!("{}", k);
+                    }
+                }
+            }
+        }
     }
 }
