@@ -1,7 +1,7 @@
 pub mod token {
     use crate::error::error::{Error, ErrorType};
-    #[derive(Debug, PartialEq, Eq, Hash)]
 
+    #[derive(Debug, PartialEq, Eq, Hash)]
     pub enum Token {
         ADD,
         ADDEQUALS,
@@ -42,7 +42,10 @@ pub mod token {
         FALSE,
         NEWLINE,
         STRING,
+        FSTRING,
         NONE,
+        OTHER,
+        TYPE,
     }
 
     impl Token {
@@ -68,6 +71,7 @@ pub mod token {
                 ";" => Self::SEMICOLON,
                 "." => Self::DOT,
                 "\"" => Self::STRING,
+                "f\"" => Self::FSTRING,
                 "{" => Self::CURLYOP,
                 "}" => Self::CURLYCP,
                 "proc" => Self::FUNCTIONIDENT,
@@ -85,7 +89,8 @@ pub mod token {
                 "&&" => Self::AND,
                 "true" => Self::TRUE,
                 "false" => Self::FALSE,
-                "\n" => Self::NEWLINE,
+                "\n" | "" => Self::NEWLINE,
+                "type" => Self::TYPE,
                 _ => Self::NONE,
             }
         }

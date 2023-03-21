@@ -1,3 +1,5 @@
+use colour::*;
+
 pub mod error {
 
     #[derive(Debug)]
@@ -11,7 +13,7 @@ pub mod error {
 
     impl Error {
         pub fn new(errortype: ErrorType, msg: String, linenum: i32) {
-            println!("{:#?}: {msg} on line {}", errortype, linenum + 1);
+            colour::red!("{:#?}: {msg} on line {}\n", errortype, linenum + 1);
             std::process::exit(69);
         }
     }

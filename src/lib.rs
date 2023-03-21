@@ -6,6 +6,7 @@ pub mod parser;
 pub mod tokens;
 pub mod types;
 use crate::tokens::token::Token;
+use regex::Regex;
 use std::collections::HashMap;
 use types::{Float, Integer};
 
