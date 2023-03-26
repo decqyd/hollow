@@ -33,7 +33,7 @@ pub mod parser {
 
                             let getvalue = match vars.get(&fvalue) {
                                 Some(e) => e,
-                                None => "dooodo",
+                                None => "dooodoo",
                             };
                             let formatted = fstring.replace(&stc, getvalue);
                             let stp =

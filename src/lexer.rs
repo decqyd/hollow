@@ -32,6 +32,7 @@ pub mod lexer {
                     Some(e) => e,
                     None => -1,
                 };
+
                 let fvalue = if index != -1 {
                     self.consume_until(&s[index as usize + 1..], '}', false, linenumber)
                 } else {
@@ -42,6 +43,7 @@ pub mod lexer {
                     );
                     unreachable!("shouldnt")
                 };
+
                 let stc = self.consume_until(&s[index as usize..], '}', true, linenumber);
                 splits.push(HashMap::from([
                     (Token::FSTRING, s),
@@ -51,6 +53,8 @@ pub mod lexer {
             } else {
                 let split: Vec<&str> = s.split(" ").collect();
                 let f = split[0];
+
+                // if token is let
                 if Token::new(f) == Token::IDENTIFIER {
                     let varname = split[1];
                     if Token::new(split[2]) == Token::ASSIGNMENT {
