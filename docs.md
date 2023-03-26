@@ -3,18 +3,21 @@
 
 ## lexer.rs
 ### consume_until
-        string: &str,
-        until: char,
-        inclusive: boolean,
-        linenumber: i32,
-     -> &str
+    pub fn consume_until<'a>(
+            &self,
+            s: &'a str,
+            until: char,
+            inclusive: bool,
+            linenumber: i32,
+        ) -> &'a str 
 * creates a new string slice from "string" from the start until it finds "until"
 * inclusive decides whether to include until in the final string slice
 * linenumber is just used for errors
 * returns string slice
 
 ### find_char
-    s: &str, find: char
-     -> Option<i32>
+    pub fn find_char(
+        &self, s: &str, find: char
+        ) -> Option<i32> 
 * similar to consume until but instead returns index of "find" in the string "s"
 
