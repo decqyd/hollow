@@ -27,6 +27,7 @@ pub mod lexer {
             } else if s.chars().nth(0).unwrap().to_string().as_str() == "f"
                 && Token::new(s.chars().nth(1).unwrap().to_string().as_str()) == Token::STRING
             {
+                // TODO: add support for multiple variables
                 let index = match Self::find_char(&self, s, '{') {
                     Some(e) => e,
                     None => -1,
@@ -42,7 +43,6 @@ pub mod lexer {
                     unreachable!("shouldnt")
                 };
                 let stc = self.consume_until(&s[index as usize..], '}', true, linenumber);
-                println!("{fvalue}");
                 splits.push(HashMap::from([
                     (Token::FSTRING, s),
                     (Token::VARNAME, fvalue),
@@ -124,8 +124,11 @@ pub mod lexer {
         }
 
         pub fn find_char(self: &Self, s: &str, find: char) -> Option<i32> {
+            // TODO: make it so this fucntion can find multiple chars
+
             let mut i = 0;
             let mut flag = false;
+            //let mut count = 0;
             for char in s.chars() {
                 if char != find {
                     i += 1
