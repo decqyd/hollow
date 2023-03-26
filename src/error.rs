@@ -1,4 +1,4 @@
-use colour::*;
+use colour;
 
 pub mod error {
 
@@ -13,7 +13,8 @@ pub mod error {
 
     impl Error {
         pub fn new(errortype: ErrorType, msg: String, linenum: i32) {
-            colour::red!("{:#?}: {msg} on line {}\n", errortype, linenum + 1);
+            colour::red!("{:#?}: ", errortype);
+            colour::prnt_ln!("{msg} on line {}", linenum + 1);
             std::process::exit(69);
         }
     }
