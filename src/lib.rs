@@ -5,7 +5,7 @@ pub mod lexer;
 pub mod parser;
 pub mod tokens;
 pub mod types;
-use crate::tokens::token::Token;
+use crate::tokens::Token;
 use regex::Regex;
 use std::collections::HashMap;
 use types::{Float, Integer};
