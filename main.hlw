@@ -1,0 +1,6 @@
+let age = 5
+
+let name = "daniel"
+
+f"my name is {name}"
+f"i am {age} years old"

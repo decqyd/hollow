@@ -27,12 +27,14 @@ impl Lexer {
         if Token::new(s) == Token::NEWLINE {
             splits.push(HashMap::from([(Token::NEWLINE, "\n")]));
         } else if Token::new(s.chars().next().unwrap().to_string().as_str()) == Token::STRING {
+            self.check_last(s, '"', linenumber);
             let c = self.consume_until(&s[1..], '"', false, linenumber);
-            splits.push(HashMap::from([(Token::STRING, c)]))
+            splits.push(HashMap::from([(Token::STRING, c)]));
         } else if s.chars().next().unwrap().to_string().as_str() == "f"
             && Token::new(s.chars().nth(1).unwrap().to_string().as_str()) == Token::STRING
         {
             // TODO: add support for multiple variables
+            self.check_last(s, '"', linenumber);
             let index = Self::find_char(self, s, '{').unwrap_or(-1);
 
             let fvalue = if index != -1 {
@@ -182,6 +184,16 @@ impl Lexer {
             Some(i)
         } else {
             None
+        }
+    }
+
+    pub fn check_last(&self, s: &str, is: char, linenumber: i32) {
+        if s.chars().last().unwrap() != is {
+            Error::new(
+                ErrorType::TokenError,
+                "Unexpected token".to_string(),
+                linenumber,
+            );
         }
     }
 
