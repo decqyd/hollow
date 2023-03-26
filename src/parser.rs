@@ -27,21 +27,19 @@ impl Parser {
                     } else if i == &Token::FSTRING {
                         let fstring = h[&Token::FSTRING];
                         let stc = h[&Token::OTHER];
-                        let fvalue = h[&Token::VARNAME];
-
-                        let getvalue = match vars.get(&fvalue) {
+                        let fvalue = match vars.get(&h[&Token::VARNAME]) {
                             Some(e) => e,
                             None => {
                                 Error::new(
                                     ErrorType::TokenError,
-                                    format!("No variable named \"{fvalue}\""),
+                                    format!("No variable named \"{}\"", h[&Token::VARNAME]),
                                     linenum,
                                 );
                                 unreachable!("gurgle")
                             }
                         };
 
-                        let formatted = fstring.replace(stc, getvalue);
+                        let formatted = fstring.replace(stc, fvalue);
                         let stp =
                             Lexer::consume_until(&Lexer, &formatted[2..], '"', false, linenum);
                         println!(r#"{}"#, stp);

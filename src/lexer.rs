@@ -40,7 +40,7 @@ impl Lexer {
             } else {
                 Error::new(
                     ErrorType::TypeError,
-                    "Unneeded f string".to_string(),
+                    "No variables passed to f string".to_string(),
                     linenumber,
                 );
                 unreachable!("shouldnt")
@@ -58,9 +58,9 @@ impl Lexer {
 
             // if token is let
             if Token::new(f) == Token::IDENTIFIER {
-                let varname = split[1];
+                let varname: &str = split[1];
                 if Token::new(split[2]) == Token::ASSIGNMENT {
-                    let varvalue = if !split[3].is_empty() {
+                    let mut varvalue = if !split[3].is_empty() {
                         split[3]
                     } else {
                         Error::new(
@@ -73,10 +73,33 @@ impl Lexer {
                     let t: &str;
                     if varvalue.starts_with('"') {
                         t = "string";
+                        varvalue = self.consume_until(&varvalue[1..], '"', false, linenumber);
                     } else if varvalue.contains('.') {
                         t = "float";
+                        let varvalue: f32 = match varvalue.parse() {
+                            Ok(e) => e,
+                            Err(e) => {
+                                Error::new(
+                                    ErrorType::TypeError,
+                                    format!("{varvalue} is not an float"),
+                                    linenumber,
+                                );
+                                unreachable!("ddodood")
+                            }
+                        };
                     } else {
                         t = "integer";
+                        let varvalue: i32 = match varvalue.parse() {
+                            Ok(e) => e,
+                            Err(e) => {
+                                Error::new(
+                                    ErrorType::TypeError,
+                                    format!("{varvalue} is not an int"),
+                                    linenumber,
+                                );
+                                unreachable!("ddodood")
+                            }
+                        };
                     }
 
                     let constructed = HashMap::from([
@@ -96,6 +119,12 @@ impl Lexer {
                 };
             } else if f == "proc" {
                 let funcname = split[1];
+            } else {
+                Error::new(
+                    ErrorType::TokenError,
+                    format!("Unexpected token \"{f}\""),
+                    linenumber,
+                )
             }
         }
 
@@ -152,7 +181,6 @@ impl Lexer {
         if flag {
             Some(i)
         } else {
-            println!("{find} not found");
             None
         }
     }
