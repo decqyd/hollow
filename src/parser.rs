@@ -32,7 +32,11 @@ impl Parser {
                         let getvalue = match vars.get(&fvalue) {
                             Some(e) => e,
                             None => {
-                                Error::new(ErrorType::TokenError, "No token".to_string(), linenum);
+                                Error::new(
+                                    ErrorType::TokenError,
+                                    format!("No variable named \"{fvalue}\""),
+                                    linenum,
+                                );
                                 unreachable!("gurgle")
                             }
                         };
