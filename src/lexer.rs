@@ -7,12 +7,6 @@ use std::collections::HashMap;
 
 pub struct Lexer;
 
-impl Default for Lexer {
-    fn default() -> Self {
-        Self::new()
-    }
-}
-
 impl Lexer {
     pub fn new() -> Self {
         Self
