@@ -1,13 +1,10 @@
-#![allow(unused_imports, unused_variables, dead_code, unused_assignments)]
+#![allow(unused_variables, dead_code, unused_assignments)]
 
 use crate::error::{Error, ErrorType};
 use crate::tokens::Token;
 use crate::types::*;
-use crate::Regex;
-use std::collections::btree_map::Values;
 use std::collections::HashMap;
-use std::fmt::format;
-use std::ptr::null;
+
 pub struct Lexer;
 
 impl Default for Lexer {
