@@ -36,3 +36,6 @@ for let i = 2 | i < 10 | i++ {
 while 1 < 2 {
     "L"
 }
+
+# system sleep
+sleep 2
