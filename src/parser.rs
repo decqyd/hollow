@@ -38,7 +38,7 @@ impl Parser {
                                 .unwrap_or_else(|| {
                                     Error::new(
                                         ErrorType::TokenError,
-                                        "Unterminated fstring".to_owned(),
+                                        "Missing }".to_owned(),
                                         linenum,
                                     );
                                     unreachable!("L")
