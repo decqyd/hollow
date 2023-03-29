@@ -25,36 +25,39 @@ impl Lexer {
             && Token::new(s.chars().nth(1).unwrap().to_string().as_str()) == Token::STRING
         {
             // TODO: add support for multiple variables
-            self.check_last(s, '"', linenumber);
-            let index = Self::find_char(self, s, '{').unwrap_or(-1);
 
-            let fvalue = if index != -1 {
-                self.consume_until(&s[index as usize + 1..], '}', false, linenumber)
-            } else {
+            let mut count = 0;
+
+            let index = Self::find_char(self, s, '{').unwrap_or(-1);
+            if index != -1 {
+                splits.push(HashMap::from([(Token::FSTRING, s)]))
+            }
+            count += 1;
+
+            if count < 1 {
                 Error::new(
                     ErrorType::TypeError,
                     "No variables passed to f string".to_string(),
                     linenumber,
                 );
                 unreachable!("shouldnt")
-            };
-
-            let stc = self.consume_until(&s[index as usize..], '}', true, linenumber);
-            splits.push(HashMap::from([
-                (Token::FSTRING, s),
-                (Token::VARNAME, fvalue),
-                (Token::OTHER, stc),
-            ]))
+            }
         } else {
             let split: Vec<&str> = s.split(' ').collect();
             let f = split[0];
-
             // if token is let
             if Token::new(f) == Token::IDENTIFIER {
                 let varname: &str = split[1];
                 if Token::new(split[2]) == Token::ASSIGNMENT {
+                    let a = match self.find_char(s, '=') {
+                        Some(e) => e,
+                        None => unreachable!("nerd"),
+                    };
+
+                    let slice = &s[a as usize + 2..];
+
                     let mut varvalue = if !split[3].is_empty() {
-                        split[3]
+                        slice
                     } else {
                         Error::new(
                             ErrorType::TokenError,
@@ -63,6 +66,7 @@ impl Lexer {
                         );
                         unreachable!("program should end when error produces")
                     };
+
                     let t: &str;
                     if varvalue.starts_with('"') {
                         t = "string";
@@ -110,7 +114,7 @@ impl Lexer {
                     );
                     unreachable!("program should end when error produces")
                 };
-            } else if f == "proc" {
+            } else if Token::new(f) == Token::FUNCTIONIDENT {
                 let funcname = split[1];
             } else {
                 Error::new(
@@ -133,6 +137,7 @@ impl Lexer {
     ) -> &'a str {
         let mut i = 0;
         let mut flag = false;
+
         for char in s.chars() {
             if char != until {
                 i += 1
@@ -141,6 +146,7 @@ impl Lexer {
                 break;
             }
         }
+
         if flag {
             if !inclusive {
                 &s[..i]
@@ -162,7 +168,7 @@ impl Lexer {
 
         let mut i = 0;
         let mut flag = false;
-        //let mut count = 0;
+
         for char in s.chars() {
             if char != find {
                 i += 1
@@ -171,6 +177,7 @@ impl Lexer {
                 break;
             }
         }
+
         if flag {
             Some(i)
         } else {
@@ -179,7 +186,8 @@ impl Lexer {
     }
 
     pub fn check_last(&self, s: &str, is: char, linenumber: i32) {
-        if s.chars().last().unwrap() != is {
+        let last = s.chars().last().unwrap();
+        if last != is {
             Error::new(
                 ErrorType::TokenError,
                 "Unexpected token".to_string(),

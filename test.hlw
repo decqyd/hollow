@@ -1,0 +1,4 @@
+let name = "aaron"
+f"{name} is ass at ow"
+let age = 5
+f"i am {age} years old {name}! {name}"
