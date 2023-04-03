@@ -29,10 +29,15 @@ helloworld arg1 arg2
 
 ## conditionals
 if 1 > 2 {
+
     "1 is bigger than 2"
+    
 } elif 1 < 2 {
+
     "1 is not bigger than 2"
+    
 } else {
+
     "none are true"
 }
 
