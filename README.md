@@ -13,7 +13,7 @@ let float = 3.4
 "this is a print statement"
 f"this is a print statement with vars: {int} {str} {boo} {float}"
 
-following functions have yet to be implemented:
+# following functions have yet to be implemented:
 ## functions
 proc helloworld => args {
     "hello world"
