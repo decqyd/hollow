@@ -5,13 +5,18 @@
 
 ## variables
 let int = 34
+
 let str = "hello"
+
 let bool = true
+
 let float = 3.4
 
 ## print
 "this is a print statement"
+
 f"this is a print statement with vars: {int} {str} {boo} {float}"
+
 
 # following functions have yet to be implemented:
 ## functions
