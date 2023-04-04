@@ -7,6 +7,7 @@ pub struct Error;
 pub enum ErrorType {
     TokenError,
     TypeError,
+    RuntimeError,
 }
 
 impl Error {
