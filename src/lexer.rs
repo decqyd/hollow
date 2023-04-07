@@ -86,7 +86,7 @@ impl Lexer {
                         };
                     } else {
                         t = "integer";
-                        let varvalue: i32 = match varvalue.parse() {
+                        let varvalue: i128 = match varvalue.parse() {
                             Ok(e) => e,
                             Err(e) => {
                                 Error::new(

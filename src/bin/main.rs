@@ -20,24 +20,27 @@ fn main() {
         let file: PathBuf = PathBuf::from(&args[1]);
         let extension = match file.extension() {
             Some(e) => e,
-            None => {
-                Error::new(
-                    ErrorType::RuntimeError,
-                    "File must have a .hlw extension!".to_string(),
-                    0,
-                );
-                unreachable!("L")
-            }
+            None => OsStr::new(""),
         };
 
-        if extension != "hlw" {
+        if extension != "hlw" || extension == "" {
             Error::new(
                 ErrorType::RuntimeError,
                 "File must have a .hlw extension!".to_string(),
                 0,
             );
         } else {
-            let mut file = File::open(file).expect("couldnt open file");
+            let mut file = match File::open(&file) {
+                Ok(e) => e,
+                Err(_) => {
+                    Error::new(
+                        ErrorType::RuntimeError,
+                        format!("Couldn't find file {file:?}!"),
+                        0,
+                    );
+                    unreachable!("SWSOO")
+                }
+            };
             let mut data = String::new();
             file.read_to_string(&mut data)
                 .expect("couldnt read contents!");

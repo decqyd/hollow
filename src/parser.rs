@@ -71,31 +71,6 @@ impl Parser {
                         println!("{}", result);
                     }
                 }
-                /*  let index = lexer.find_char(k, '{').unwrap_or(-1);
-
-                    let fstring = h[&Token::FSTRING];
-                    let stc = lexer.consume_until(&k[index as usize..], '}', true, linenum);
-                    let fvalue =
-                        lexer.consume_until(&k[index as usize + 1..], '}', false, linenum);
-
-                    let val = match vars.get(&fvalue) {
-                        Some(e) => e,
-                        None => {
-                            Error::new(
-                                ErrorType::TokenError,
-                                format!("No variable named \"{}\"", fvalue),
-                                linenum,
-                            );
-                            unreachable!("gurgle")
-                        }
-                    };
-
-                    let formatted = fstring.replace(stc, val);
-                    let stp =
-                        Lexer::consume_until(&Lexer, &formatted[2..], '"', false, linenum);
-
-                    println!(r#"{}"#, stp);
-                } */
             }
         }
     }
