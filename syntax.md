@@ -11,6 +11,12 @@ let float = 3.4
 f"this is a print statement with vars: {int} {str} {boo} {float}"
 
 ## functions
+### without args
+proc helloworld {
+    "hello world"
+}
+
+### with args
 proc helloworld => args {
     "hello world"
 }
