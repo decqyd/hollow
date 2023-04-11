@@ -1,5 +1,4 @@
-let name = "aaron"
-let age = 35
-f"my name is {name} and i am {age} years old"
+let name = "joshua"
+let noOfDeaths = 53
 
-"test""test"
+f"hi my name is {name} and i have {noOfDeaths} deaths in Overwatch 2!"
